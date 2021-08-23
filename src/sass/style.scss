@@ -7,6 +7,7 @@
 body{
   background: rgb(34, 34, 34);
   font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
 }
 
 #logo{
@@ -65,6 +66,7 @@ body{
   position: relative;
   flex: 1;
   flex-basis: 25rem;
+  overflow: hidden;
 
   img{
     width: 100%;
@@ -152,7 +154,7 @@ body{
   height: 100%;
   background: rgb(34, 34, 34);
   top: 0;
-  left: 0;
+  left: 15%;
 }
 
 .cursor{
@@ -161,4 +163,8 @@ body{
   border: 2px solid white;
   position: absolute;
   border-radius: 50%;
+}
+
+.scroll-magic-pin-spacer{
+  position: static;
 }
