@@ -1,5 +1,6 @@
 /* global gsap */
 /* global ScrollMagic */
+/* global barba */
 
 
 
@@ -23,7 +24,7 @@ function animiateSlide() {
     const revealText = slide.querySelector('.reveal-text');
     //GSAP
     const slideTl = gsap.timeline({
-      defaults: { duration: 1, ease: 'power2.inOut' }
+      defaults: { duration: 0.5, ease: 'power2.inOut' }
     });
     slideTl.fromTo(revealImg, { x: '0%' }, { x: '100%' });
     slideTl.fromTo(img, { scale: 2 }, { scale: 1 }, '-=1');
@@ -110,7 +111,45 @@ function navToggle(e) {
     gsap.to('.nav-bar', 1, { clipPath: 'circle(50px at 100% -10%)' });
     document.body.classList.remove('hiden');
   }
-
 }
+const logo = document.querySelector('#logo');
+barba.init({
+  views: [{
+    namespace: 'home',
+    beforeEnter() {
+      animiateSlide();
+      logo.href = './index.html'
+    },
+    beforeLeave() {
+      slideScene.destroy();
+      pageScene.destroy();
+      controller.destroy();
+    }
+  },
+  {
+    namespace: 'fashion',
+    beforeEnter() {
+      logo.href = '../index.html';
+      //gsap.to('.nav-header', 1, { y: '100%' }, { y: '0%', ease: 'power2.inOut' });
+    }
+  }
+  ],
+  transitions: [
+    {
+      leave({ current, next }) {
+        let done = this.async();
+        window.scrollTo(0, 0);
+        const tl = gsap.timeline({ default: { ease: 'power2.inOut' } });
+        tl.fromTo(current.container, 0.5, { opacity: 1 }, { opacity: 0 });
+        tl.fromTo('.swipe', 0.75, { x: '-100%' }, { x: '0%', onComplete: done }, '-=0.5');
+      },
+      enter({ current, next }) {
+        let done = this.async();
+        const tl = gsap.timeline({ default: { ease: 'power2.inOut' } });
+        tl.fromTo('.swipe', 0.75, { x: '0' }, { x: '100%', stagger: 0.25, onComplete: done });
+        tl.fromTo(next.container, 0.5, { opacity: 0 }, { opacity: 1, onComplete: done });
+      },
 
-animiateSlide();
+    }
+  ]
+});

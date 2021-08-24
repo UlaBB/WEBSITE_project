@@ -8,6 +8,11 @@ body{
   background: rgb(34, 34, 34);
   font-family: 'Montserrat', sans-serif;
   overflow-x: hidden;
+  position: relative;
+}
+
+main{
+  position: absolute;
 }
 
 #logo{
@@ -288,4 +293,28 @@ body.hiden{
   bottom: 10%;
   color: white;
   opacity: 0.5;
+}
+
+.swipe{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.swipe1{
+  background: rgb(255, 139, 93);
+  z-index: 5;
+}
+
+.swipe2{
+ background: rgb(167, 110, 231);
+ z-index: 4;
+}
+
+.swipe3{
+  background: rgb(86, 124, 228);
+  z-index: 3;
 }
