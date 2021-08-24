@@ -40,7 +40,7 @@ function animiateSlide() {
       .addIndicators({ colorStart: 'white', colorTrigger: 'white', name: 'slide' })
       .addTo(controller);
 
-    //console.log(slideScene);
+    console.log(slideScene);
     const pageTl = gsap.timeline();
     let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
     pageTl.fromTo(nextSlide, { y: '0' }, { y: '50%' });
@@ -57,17 +57,20 @@ function animiateSlide() {
       .addIndicators({ colorStart: 'red', colorTrigger: 'red', name: 'page', indent: 200 })
       .addTo(controller);
   });
-  //console.log(pageScene);
+  console.log(pageScene);
 }
+
+
+const mouse = document.querySelector('.cursor');
+const mouseTxt = mouse.querySelector('span');
+const burger = document.querySelector('.burger');
+
 
 window.addEventListener('mousemove', cursor);
 window.addEventListener('mouseover', activeCursor);
-
-let mouse = document.querySelector('.cursor');
-let mouseTxt = mouse.querySelector('span');
+burger.addEventListener('click', navToggle);
 
 function cursor(e) {
-
   mouse.style.top = e.pageY + 'px';
   mouse.style.left = e.pageX + 'px';
 }
@@ -89,6 +92,25 @@ function activeCursor(e) {
     mouseTxt.innerText = '';
     gsap.to('.title-swipe', 1, { y: '100%' });
   }
+}
+
+function navToggle(e) {
+  if (!e.target.classList.contains('active')) {
+    e.target.classList.add('active');
+    gsap.to('.line1', 0.5, { rotate: '45', y: 5, background: 'black' });
+    gsap.to('.line2', 0.5, { rotate: '-45', y: -5, background: 'black' });
+    gsap.to('#logo', 0.5, { color: 'black' });
+    gsap.to('.nav-bar', 1, { clipPath: 'circle(250rem at 100% -10%)' });
+    document.body.classList.add('hiden');
+  } else {
+    e.target.classList.remove('active');
+    gsap.to('.line1', 0.5, { rotate: '0', y: 0, background: 'white' });
+    gsap.to('.line2', 0.5, { rotate: '0', y: 0, background: 'white' });
+    gsap.to('#logo', 0.5, { color: 'white' });
+    gsap.to('.nav-bar', 1, { clipPath: 'circle(50px at 100% -10%)' });
+    document.body.classList.remove('hiden');
+  }
+
 }
 
 animiateSlide();

@@ -15,16 +15,18 @@ body{
   font-family: 'Abril Fatface', cursive;
 }
 
-.nav-header{
+.nav-header {
   min-height: 10vh;
   font-size: 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   color: white;
   width: 80%;
   margin: auto;
-  padding: 2rem 0;
+  padding: 2rem 0rem;
+  z-index: 2;
+  position: relative;
 }
 
 .burger{
@@ -119,7 +121,6 @@ body{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 1;
   opacity: 1;
   clip-path: circle(50px at 100% -10%);
   webkit-clip-path: circle(50px at 100% -10%);
@@ -169,10 +170,11 @@ body{
   transition: all 0.2s ease-in-out;
   transition-property: background transform;
   transform-origin: 75% 75%;
+  
 }
 
 .cursor.nav-active{
-  background: rgb(83, 124, 288);
+  background: rgba(83, 124, 288, 0.5);
   transform: scale(2);
 }
 
@@ -211,9 +213,15 @@ body{
 .t-swipe1 {
   background: rgb(86, 124, 228);
 }
+
 .t-swipe2 {
   background: rgb(167, 110, 231);
 }
+
 .t-swipe3 {
   background: rgb(255, 139, 93);
+}
+
+body.hiden{
+  overflow: hidden;
 }
