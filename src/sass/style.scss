@@ -1,23 +1,23 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   background: rgb(34, 34, 34);
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
   position: relative;
 }
 
-main{
+main {
   position: absolute;
 }
 
-#logo{
+#logo {
   color: white;
-  font-family: 'Abril Fatface', cursive;
+  font-family: "Abril Fatface", cursive;
 }
 
 .nav-header {
@@ -34,13 +34,13 @@ main{
   position: relative;
 }
 
-.burger{
+.burger {
   color: white;
   cursor: pointer;
 }
 
 .line1,
-.line2{
+.line2 {
   width: 3rem;
   height: 0.2rem;
   margin: 0.4rem;
@@ -48,7 +48,7 @@ main{
   pointer-events: none;
 }
 
-.slide{
+.slide {
   min-height: 100vh;
   margin: 0 auto 0 auto;
   width: 80%;
@@ -59,7 +59,7 @@ main{
   background-color: rgb(34, 34, 34);
 }
 
-.hero-desc{
+.hero-desc {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,43 +70,43 @@ main{
   position: relative;
 }
 
-.hero-img{
+.hero-img {
   position: relative;
   flex: 1;
   flex-basis: 25rem;
   overflow: hidden;
 
-  img{
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 }
 
-.mountain-span{
+.mountain-span {
   color: rgb(255, 139, 93);
 }
 
-.hike-span{
+.hike-span {
   color: rgb(255, 139, 93);
 }
 
-.skitour-span{
+.skitour-span {
   color: rgb(255, 139, 93);
 }
 
-.hero-desc h2{
-  font-family: 'Abril Fatface', cursive;
+.hero-desc h2 {
+  font-family: "Abril Fatface", cursive;
   font-size: 3rem;
 }
 
-.hero-desc p{
+.hero-desc p {
   font-size: 1rem;
   padding: 3rem 0rem;
   color: white;
 }
 
-.explore{
+.explore {
   padding: 1rem 2rem;
   background: none;
   border: 1px solid white;
@@ -116,7 +116,7 @@ main{
   align-self: flex-start;
 }
 
-.nav-bar{
+.nav-bar {
   position: fixed;
   top: 0;
   left: 0;
@@ -131,31 +131,31 @@ main{
   webkit-clip-path: circle(50px at 100% -10%);
 }
 
-.nav-links{
+.nav-links {
   font-size: 4rem;
   flex-basis: 30rem;
-  
-  h3{
+
+  h3 {
     padding: 3rem 0rem;
   }
 }
 
-.contact{
+.contact {
   flex-basis: 30rem;
 
-  h2{
+  h2 {
     font-size: 4rem;
     padding: 2rem 0rem;
   }
 
-  p{
+  p {
     font-size: 1.5rem;
     line-height: 2rem;
   }
 }
 
 .reveal-image,
-.reveal-text{
+.reveal-text {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -164,7 +164,7 @@ main{
   left: 15%;
 }
 
-.cursor{
+.cursor {
   width: 3rem;
   height: 3rem;
   border: 2px solid white;
@@ -175,20 +175,19 @@ main{
   transition: all 0.2s ease-in-out;
   transition-property: background transform;
   transform-origin: 75% 75%;
-  
 }
 
-.cursor.nav-active{
+.cursor.nav-active {
   background: rgba(83, 124, 288, 0.5);
   transform: scale(2);
 }
 
-.cursor.active-explore{
+.cursor.active-explore {
   background: white;
   transform: scale(3);
 }
 
-.cursor-text{
+.cursor-text {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -200,12 +199,12 @@ main{
   position: static !important;
 }
 
-.title{
+.title {
   position: relative;
   overflow: hidden;
 }
 
-.title-swipe{
+.title-swipe {
   width: 100%;
   height: 100%;
   top: 0;
@@ -227,13 +226,13 @@ main{
   background: rgb(255, 139, 93);
 }
 
-body.hiden{
+body.hiden {
   overflow: hidden;
 }
 
-.fashion1, 
+.fashion1,
 .fashion2,
-.fashion3{
+.fashion3 {
   min-height: 90vh;
   display: flex;
   justify-content: center;
@@ -246,47 +245,47 @@ body.hiden{
   position: relative;
 }
 
-.fashion-img{
+.fashion-img {
   height: 70vh;
   flex-basis: 30rem;
 
-  img{
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 }
 
-.fashion-text{
+.fashion-text {
   flex: 1;
   position: relative;
   flex-basis: 25rem;
 
-  h1{
+  h1 {
     font-size: 4rem;
     padding: 5rem 0;
   }
 
-  p{
+  p {
     font-size: 1.5rem;
     padding: 2rem 2rem 0 0;
     margin-bottom: 10rem;
   }
 }
 
-.fashion1 h1{
+.fashion1 h1 {
   color: rgb(255, 139, 93);
 }
 
-.fashion2 h1{
+.fashion2 h1 {
   color: rgb(167, 110, 231);
 }
 
-.fashion3 h1{
+.fashion3 h1 {
   color: rgb(86, 124, 228);
 }
 
-.fashion-nr{
+.fashion-nr {
   font-size: 8rem;
   position: absolute;
   left: 40%;
@@ -295,7 +294,7 @@ body.hiden{
   opacity: 0.5;
 }
 
-.swipe{
+.swipe {
   position: fixed;
   height: 100%;
   width: 100%;
@@ -304,17 +303,117 @@ body.hiden{
   transform: translateX(-100%);
 }
 
-.swipe1{
+.swipe1 {
   background: rgb(255, 139, 93);
   z-index: 5;
 }
 
-.swipe2{
+.swipe2 {
   background: rgb(167, 110, 231);
   z-index: 4;
 }
 
-.swipe3{
+.swipe3 {
   background: rgb(86, 124, 228);
   z-index: 3;
+}
+
+@media screen and (max-width: 1500px) {
+  .hero-img {
+    height: 50vh;
+  }
+
+  .fashion-text {
+    h1 {
+      font-size: 2rem;
+      padding: 2rem 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+    }
+  }
+
+  .fashion-img {
+    img {
+      height: 50vh;
+      object-position: top;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  main {
+    width: 100%;
+    margin: 0;
+  }
+
+  .slide {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-desc {
+    padding: 0;
+
+    h2 {
+      font-size: 1.6rem;
+      padding: 1rem 0rem;
+    }
+
+    p {
+      font-size: 1rem;
+      padding: 2rem 1rem;
+      line-height: 1.5rem;
+      text-align: center;
+    }
+
+    .explore {
+      width: 50%;
+      margin: auto;
+    }
+  }
+
+  .detailSlide {
+    width: 100%;
+    text-align: center;
+  }
+
+  .fashion-text {
+    p {
+      margin-bottom: 5rem;
+      padding: 0;
+    }
+
+    h1 {
+      margin: 2rem 0rem;
+    }
+  }
+
+  .fashion-nr {
+    font-size: 8rem;
+  }
+
+  .nav-bar {
+    display: block;
+  }
+
+  .nav-links {
+    margin-top: 5rem;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .contact {
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 1rem;
+    }
+    h2 {
+      font-size: 3rem;
+      text-align: center;
+    }
+  }
 }

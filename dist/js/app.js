@@ -80,11 +80,11 @@ function detailAnimation() {
     })
       .setPin(slide, { pushFollowers: false })
       .setTween(slideTl)
-      .addIndicators({
-        colorStart: 'white',
-        colorTrigger: 'white',
-        name: 'detailScene'
-      })
+      // .addIndicators({
+      //   colorStart: 'white',
+      //   colorTrigger: 'white',
+      //   name: 'detailScene'
+      // })
       .addTo(controller);
   });
 }
