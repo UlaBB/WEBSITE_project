@@ -7,15 +7,16 @@
 let controller;
 let slideScene;
 let pageScene;
+let detailScene;
 
 function animiateSlide() {
 
   //Init controller
   controller = new ScrollMagic.Controller();
 
-  //select something
+  //selectors
   const sliders = document.querySelectorAll('.slide');
-  const nav = document.querySelector('.nav-header');
+  //const nav = document.querySelector('.nav-header');
 
   //loop over each slide
   sliders.forEach((slide, index, slides) => {
@@ -29,7 +30,7 @@ function animiateSlide() {
     slideTl.fromTo(revealImg, { x: '0%' }, { x: '100%' });
     slideTl.fromTo(img, { scale: 2 }, { scale: 1 }, '-=1');
     slideTl.fromTo(revealText, { x: '0%' }, { x: '100%' }, '-=0.75');
-    slideTl.fromTo(nav, { y: '-100%' }, { y: '0%' }, '-=0.25');
+    
     //Create Scene
 
     slideScene = new ScrollMagic.Scene({
@@ -38,7 +39,7 @@ function animiateSlide() {
       reverse: false,
     })
       .setTween(slideTl)
-      .addIndicators({ colorStart: 'white', colorTrigger: 'white', name: 'slide' })
+      //.addIndicators({ colorStart: 'white', colorTrigger: 'white', name: 'slide' })
       .addTo(controller);
 
     console.log(slideScene);
@@ -55,12 +56,38 @@ function animiateSlide() {
     })
       .setPin(slide, { pushFollowers: false })
       .setTween(pageTl)
-      .addIndicators({ colorStart: 'red', colorTrigger: 'red', name: 'page', indent: 200 })
+      //.addIndicators({ colorStart: 'red', colorTrigger: 'red', name: 'page', indent: 200 })
       .addTo(controller);
   });
   console.log(pageScene);
 }
 
+function detailAnimation() {
+  controller = new ScrollMagic.Controller();
+  const slides = document.querySelectorAll('.detailSlide');
+  slides.forEach((slide, index, slides) => {
+    const slideTl = gsap.timeline({ defaults: { duration: 1 } });
+    let nextSlide = slides.length - 1 === index ? 'end' : slides[index + 1];
+    const nextImg = nextSlide.querySelector('img');
+    slideTl.fromTo(slide, { opacity: 1 }, { opacity: 0 });
+    slideTl.fromTo(nextSlide, { opacity: 0 }, { opacity: 1 }, '-=1');
+    slideTl.fromTo(nextImg, { x: '50%' }, { x: '0%' });
+    //Scene
+    detailScene = new ScrollMagic.Scene({
+      triggerElement: slide,
+      duration: '100%',
+      triggerHook: 0
+    })
+      .setPin(slide, { pushFollowers: false })
+      .setTween(slideTl)
+      .addIndicators({
+        colorStart: 'white',
+        colorTrigger: 'white',
+        name: 'detailScene'
+      })
+      .addTo(controller);
+  });
+}
 
 const mouse = document.querySelector('.cursor');
 const mouseTxt = mouse.querySelector('span');
@@ -113,12 +140,13 @@ function navToggle(e) {
   }
 }
 const logo = document.querySelector('#logo');
+
 barba.init({
   views: [{
     namespace: 'home',
     beforeEnter() {
       animiateSlide();
-      logo.href = './index.html'
+      logo.href = './index.html';
     },
     beforeLeave() {
       slideScene.destroy();
@@ -130,26 +158,52 @@ barba.init({
     namespace: 'fashion',
     beforeEnter() {
       logo.href = '../index.html';
-      //gsap.to('.nav-header', 1, { y: '100%' }, { y: '0%', ease: 'power2.inOut' });
+      detailAnimation();
+      gsap.fromTo('.nav-header', 1, { y: '100%' }, { y: '0%', ease: 'power2.inOut' });
+    },
+    beforeLeave(){
+      controller.destroy(),
+      detailScene.destroy();
     }
   }
   ],
   transitions: [
     {
-      leave({ current, next }) {
+      leave({ current }) {
         let done = this.async();
+        //An Animation
+        const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+        tl.fromTo(current.container, 1, { opacity: 1 }, { opacity: 0 });
+        tl.fromTo(
+          '.swipe',
+          0.75,
+          { x: '-100%' },
+          { x: '0%', onComplete: done },
+          '-=0.5'
+        );
+      },
+      enter({ next }) {
+        let done = this.async();
+        //Scroll to the top
         window.scrollTo(0, 0);
-        const tl = gsap.timeline({ default: { ease: 'power2.inOut' } });
-        tl.fromTo(current.container, 0.5, { opacity: 1 }, { opacity: 0 });
-        tl.fromTo('.swipe', 0.75, { x: '-100%' }, { x: '0%', onComplete: done }, '-=0.5');
-      },
-      enter({ current, next }) {
-        let done = this.async();
-        const tl = gsap.timeline({ default: { ease: 'power2.inOut' } });
-        tl.fromTo('.swipe', 0.75, { x: '0' }, { x: '100%', stagger: 0.25, onComplete: done });
-        tl.fromTo(next.container, 0.5, { opacity: 0 }, { opacity: 1, onComplete: done });
-      },
+        //An Animation
+        const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' } });
+        tl.fromTo(
+          '.swipe',
+          1,
+          { x: '0%' },
 
+          { x: '100%', stagger: 0.2, onComplete: done }
+        );
+        tl.fromTo(next.container, 1, { opacity: 0 }, { opacity: 1 });
+        tl.fromTo(
+          '.nav-header',
+          1,
+          { y: '-100%' },
+          { y: '0%', ease: 'power2.inOut' },
+          '-=1.5'
+        );
+      }
     }
   ]
 });
